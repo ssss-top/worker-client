@@ -2,7 +2,7 @@ package wrapper
 
 import (
 	"context"
-	"github.com/frankffenn/worker-srv/consulapi"
+	"github.com/ssss-top/worker-client/consulapi"
 	"go-micro.dev/v4/client"
 	"go-micro.dev/v4/registry"
 	"go-micro.dev/v4/selector"

@@ -1,4 +1,4 @@
-module github.com/frankffenn/worker-srv
+module github.com/ssss-top/worker-client
 
 go 1.14
 
