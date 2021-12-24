@@ -14,7 +14,7 @@ import (
 
 var (
 	DialTimeoutInterval    = 30 * time.Second
-	RequestTimeoutInterval = 30 * time.Second
+	RequestTimeoutInterval = 30 * time.Minute
 )
 
 type SelectWrapper struct {

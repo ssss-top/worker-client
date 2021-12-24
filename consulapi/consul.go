@@ -129,7 +129,6 @@ func (c *Client) List(prefix string) (map[string]*ConsulVal, error) {
 			return nil, err
 		}
 
-		fmt.Println("trimPrefix(pair.Key)", trimPrefix(pair.Key))
 		out[trimPrefix(pair.Key)] = &val
 	}
 
