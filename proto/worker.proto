@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto;
 
-option go_package = "github.com/frankffenn/worker-srv/proto";
+option go_package = "github.com/ssss-top/worker-client/proto";
 
 service WorkerService  {
 	rpc SealCommit2(SealCommit2Request) returns (SealCommit2Response);
