@@ -16,7 +16,7 @@ import (
 	"time"
 )
 
-var scheduleInterval = 1 *time.Second
+var scheduleInterval = 60 *time.Second
 
 type workerRequest struct {
 	ctx context.Context
@@ -148,7 +148,7 @@ func (s *scheduler) trySched() {
 		}(task)
 	}
 }
-
+d
 
 func (s *scheduler) call(req *workerRequest) ([]byte, error ){
 	 resp, err :=  s.service.SealCommit2(req.ctx, &proto.SealCommit2Request{
