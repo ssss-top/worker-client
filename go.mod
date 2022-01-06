@@ -4,7 +4,9 @@ go 1.14
 
 require (
 	github.com/armon/go-metrics v0.3.9 // indirect
+	github.com/asim/go-micro/plugins/registry/consul/v4 v4.0.0-20220103112129-696a0ba71412
 	github.com/fatih/color v1.13.0 // indirect
+	github.com/filecoin-project/go-state-types v0.1.1
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/consul/api v1.10.1

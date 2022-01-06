@@ -6,7 +6,6 @@ import (
 	"go-micro.dev/v4/client"
 	"go-micro.dev/v4/registry"
 	"go-micro.dev/v4/selector"
-	"go-micro.dev/v4/util/log"
 	"golang.org/x/xerrors"
 	"net"
 	"time"
@@ -23,7 +22,6 @@ type SelectWrapper struct {
 }
 
 func (m *SelectWrapper) Call(ctx context.Context, req client.Request, rsp interface{}, opts ...client.CallOption) error {
-	var finish = func() {}
 	opts = append(opts,
 		client.WithDialTimeout(DialTimeoutInterval),
 		client.WithRequestTimeout(RequestTimeoutInterval),
@@ -63,20 +61,6 @@ func (m *SelectWrapper) Call(ctx context.Context, req client.Request, rsp interf
 						continue
 					}
 
-					if err := m.api.CASGpuDevices(host, func(v *consulapi.ConsulVal) {
-						v.GPUDevicesCount--
-					}); err != nil {
-						return nil, xerrors.Errorf("update gpu devices count: %v", err)
-					}
-
-					finish = func() {
-						if err := m.api.CASGpuDevices(host, func(v *consulapi.ConsulVal) {
-							v.GPUDevicesCount++
-						}); err != nil {
-							log.Errorf("update gpu devices count: %v", err)
-						}
-					}
-
 					return node, nil
 				}
 
@@ -86,14 +70,7 @@ func (m *SelectWrapper) Call(ctx context.Context, req client.Request, rsp interf
 	))
 
 	// now do some call
-	if err := m.Client.Call(ctx, req, rsp, nOpts...); err != nil {
-		finish()
-		return err
-	}
-
-	finish()
-
-	return nil
+	return m.Client.Call(ctx, req, rsp, nOpts...)
 }
 
 func NewSelectWrapper(addr string) client.Wrapper {
