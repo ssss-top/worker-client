@@ -148,7 +148,6 @@ func (s *scheduler) trySched() {
 		}(task)
 	}
 }
-d
 
 func (s *scheduler) call(req *workerRequest) ([]byte, error ){
 	 resp, err :=  s.service.SealCommit2(req.ctx, &proto.SealCommit2Request{
